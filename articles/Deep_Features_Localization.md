@@ -6,6 +6,9 @@ https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Zhou_Learning_
 ## どんなもの?
 Deep Learning がクラス分けタスクにおいて判断の理由が分からない問題の解決に取り組んだ
 
+## 先行研究と比べて何がすごい？
+Global Average Poolingでクラス分けの判断の理由を可視化したのは初めて
+
 ## どうやって有効だと検証した?
 判断の理由を可視化した結果を見て、人間の感覚と合ってそうだと思った。
 同じ画像でも、クラス分けの結果の違いによって、可視化した結果も異なっている。
@@ -16,10 +19,9 @@ Deep Learning がクラス分けタスクにおいて判断の理由が分から
 
 ## 議論はある？
 可視化のためのネットワーク構造にすることで、学習精度が下がることはないのか？
-
-## 先行研究と比べて何がすごい？
-Global Average Poolingでクラス分けの判断の理由を可視化したのは初めて
+Global Average Poolingで画像の平均値を最終層にしたら、位置情報を捨ててしまう？
 
 ## 次に読むべき論文は？
 Class Activation Mapping(CAM)と呼ばれて有名な技術の一つになった。
 CAMの派生形が、最近増えている。より局所的になったり、学習精度が落ちないような工夫を次に調査する
+Grad-CAM(http://blog.brainpad.co.jp/entry/2017/07/10/163000)
