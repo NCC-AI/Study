@@ -9,12 +9,19 @@ Deep Learningの医療応用について300以上の研究をまとめたSurvey�
 医療応用における特殊性を事例を交えて紹介し、キーとなった発想やノウハウまで説明している。
 ### イントロ
 ・DNNの歴史
+
 ・DNNの手法
+
 ・Classificationアーキテクチャ
+
 ・Multi-Streamアーキテクチャ
+
 ・Segmentationアーキテクチャ
+
 ・RNN
+
 ・教師なし深層学習
+
 ・RBM
 
 ### Medical ImagingにおけるデDeep Learningの使い方について
