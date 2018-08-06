@@ -6,6 +6,7 @@ https://arxiv.org/pdf/1702.05747.pdf
 
 ## どんなもの?
 Deep Learningの医療応用について300以上の研究をまとめたSurvey論文。
+
 医療応用における特殊性を事例を交えて紹介し、キーとなった発想やノウハウまで説明している。
 ### イントロ
 ・DNNの歴史
@@ -24,7 +25,7 @@ Deep Learningの医療応用について300以上の研究をまとめたSurvey�
 
 ・RBM
 
-### Medical ImagingにおけるデDeep Learningの使い方について
+### Medical ImagingにおけるDeep Learningの使い方について
 
 ・Classification
 
