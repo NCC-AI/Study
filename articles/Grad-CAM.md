@@ -23,6 +23,7 @@ Image Captioningとか、VQA(Visual Question Answering)のタスクに対して�
 1. 特徴マップの各チャンネルで勾配の平均をとり重みとする
 1. 特徴マップに重みをかけて、全てを足し合わせる(Grad-CAM)
 1. 従来のピクセルレベルの手法と組み合わせる
+![grad-cam-out-newwork](https://github.com/NCC-AI/Study/blob/images/grad-cam-network.png)
 
 ## 議論はある？
 - まだまだ、局所性がセグメンテーションには劣る
