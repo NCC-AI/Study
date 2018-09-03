@@ -1,4 +1,5 @@
 # Learning Confidence for Out-of-Distribution Detection in Neural Networks
+(2018) Terrance DeVries / Graham W. Taylor  
 https://arxiv.org/pdf/1802.04865.pdf  
 
 ## どんなもの？（アブストと結論とイントロで読んだものをここに書く）
