@@ -3,5 +3,5 @@ logs
 data
 models
 utils
-*.utils.ipynb
+*_utils.ipynb
 *.py
