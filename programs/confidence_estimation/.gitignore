@@ -5,3 +5,4 @@ models
 utils
 *_utils.ipynb
 *.py
+nohup.out
