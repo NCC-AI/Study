@@ -17,7 +17,7 @@ https://www.researchgate.net/publication/319100618_Automated_Classification_of_L
 
 ## どうやって有効だと検証した?
 ![2018-09-23 0 41 36](https://user-images.githubusercontent.com/12442472/45918959-95755a00-bec9-11e8-81a1-d5d254ebe65b.png)
-![2018-09-23 0 53 57](https://user-images.githubusercontent.com/12442472/45919072-2e58a500-becb-11e8-80d1-233a69523077.png)
+![2018-09-23 0 53 57](https://user-images.githubusercontent.com/12442472/45919072-2e58a500-becb-11e8-80d1-233a69523077.png)<br>
 弁別の対象はAdenocarcinoma, Squamous cell carcinoma, Small cell carcinomaの3つ。<br>
 自作のCNNで60000 epoch（8h）学習させ、3-Fold Cross Validationを行い性能を評価した。<br>
 
