@@ -16,14 +16,14 @@ https://link.springer.com/article/10.1007%2Fs00464-018-6417-4
 - 工程分類が10工程に細分化している
 
 ## どうやって有効だと検証した?
-10クロスバリデーションを行って、Accuracyは77%
-手術の終了時刻予測は、平均16 ± 13 minの誤差だった。
+- 10クロスバリデーションを行って、Accuracyは77%
+- 手術の終了時刻予測は、平均16 ± 13 minの誤差だった。
 
 ## 技術の手法や肝は？
-three cameras and four audio signals
-術具の使用を監視。
-40症例を、手作業でアノテーションして10クラス分類した  
-Randam  Forest
+- three cameras and four audio signals
+- 術具の使用を監視。
+- 40症例を、手作業でアノテーションして10クラス分類した  
+- Randam  Forest
 
 ## 議論はある？
 3つの設置されたビデオ=>術具の使用を人が確認、タグ付け=>Random Forestで工程分類と終了時刻予測
