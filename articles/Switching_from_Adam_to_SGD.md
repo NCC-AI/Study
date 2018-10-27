@@ -1,6 +1,6 @@
 # Improving Generalization Performance by Switching from Adam to SGD
 (2017.12) Nitish Shirish Keskar / Richard Socher
-https://arxiv.org/pdf/XXXXXXXXXX.pdf
+https://arxiv.org/pdf/1712.07628.pdf
 
 ## どんなもの?
 1. OptimizerとしてAdamがよく使われるが、実際はSGD(Stocastic Gradient Descent)の方が学習終盤の性能が良いことを検証した。<br>
