@@ -1,5 +1,6 @@
 checkpoints
 logs
+figures
 data
 models
 utils
