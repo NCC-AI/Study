@@ -1,10 +1,10 @@
-# Methods and datasets on semantic segmentation: A review
-(2018) Hongshan Yua / Zhengeng Yang
-https://www.sciencedirect.com/science/article/pii/S0925231218304077
-（大学からじゃないと見れないかも）
+# Methods and datasets on semantic segmentation: A review  
+(2018) Hongshan Yua / Zhengeng Yang  
+https://www.sciencedirect.com/science/article/pii/S0925231218304077  
+（大学からじゃないと見れないかも）  
 
 ### Part 1
-10分で全体を説明するのは厳しいので主に論文のうちで表現学習の手法を扱った部分について説明する。  
+10分で全体を説明するのは厳しいので主に論文のうちで表現学習の手法を扱った部分について説明する。    
 
 ## どんなもの?
 - 全体について  
@@ -12,9 +12,7 @@ https://www.sciencedirect.com/science/article/pii/S0925231218304077
   - 新しいデータセットについてもまとめた  
   - モデルごとに長所と短所を比較した  
   - 今後の研究が発展するであろう分野について論じた  
-  
-- 全体の概要  
-  - 手動設計の特徴量だと領域の
+
   
 ## 表現学習を用いた手法について  
 ![image](https://user-images.githubusercontent.com/12442472/48664565-d95c9800-eae3-11e8-89e2-a601ec6bf8bc.png)  
