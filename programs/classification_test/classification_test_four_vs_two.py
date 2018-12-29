@@ -9,7 +9,6 @@ import os
 
 # os.environ['CUDA_VISIBLE_DEVICES'] = '3'
 
-
 #############
 # load data #
 #############
@@ -59,14 +58,16 @@ elif pattern == 2:
 # four classification #
 #######################
 def four_classification(x_train, y_train, x_test, y_test, class_four, convert_dict):
-    y_train_four = np.array([content for index, content in enumerate(y_train) if content in class_four])
-    x_train_four = np.array([x_train[i] for i in y_train_four])
+    train_index_range = np.array([index for index, content in enumerate(y_train) if content in class_four])
+    y_train_four = y_train[train_index_range]
+    x_train_four = x_train[train_index_range]
 
-    y_test_four = np.array([content for index, content in enumerate(y_test) if content in class_four])
-    x_test_four = np.array([x_test[i] for i in y_test_four])
+    test_index_range = np.array([index for index, content in enumerate(y_test) if content in class_four])
+    y_test_four = y_test[test_index_range]
+    x_test_four = x_test[test_index_range]
 
-    y_train_four = [convert_dict[i] for i in y_train_four]
-    y_test_four = [convert_dict[i] for i in y_test_four]
+    y_train_four = np.array([convert_dict[i] for i in y_train_four])
+    y_test_four = np.array([convert_dict[i] for i in y_test_four])
 
     plt.figure(1)
     for i,num in enumerate([40000,4000,400,40]):
