@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from keras.datasets import fashion_mnist
 from keras.utils import to_categorical
-from keras.models import Sequential
+from keras.models import Sequential, model_from_json
 from keras.layers import Dense, Conv2D, MaxPooling2D,Flatten
 from keras.callbacks import EarlyStopping
 import os
@@ -127,30 +127,28 @@ y_train_SS_two = y_train_four_to_two[:40]
 ##############
 # make model #
 ##############
-model_four = Sequential()
-model_four.add(Conv2D(32,(3,3), activation='relu', input_shape=(28,28,1)))
-model_four.add(MaxPooling2D(2,2))
-model_four.add(Conv2D(64,(3,3), activation='relu'))
-model_four.add(MaxPooling2D(2,2))
-model_four.add(Conv2D(64,(3,3), activation='relu'))
-model_four.add(Flatten())
-model_four.add(Dense(64,activation='relu'))
-model_four.add(Dense(4,activation='softmax'))
-
+model = Sequential()
+model.add(Conv2D(32,(3,3), activation='relu', input_shape=(28,28,1)))
+model.add(MaxPooling2D(2,2))
+model.add(Conv2D(64,(3,3), activation='relu'))
+model.add(MaxPooling2D(2,2))
+model.add(Conv2D(64,(3,3), activation='relu'))
+model.add(Flatten())
+model.add(Dense(64,activation='relu'))
 early_stopping = EarlyStopping(patience=10, verbose=-1)
 
-model_four.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
+model_architect = model.to_json()
 
-model_two = Sequential()
-model_two.add(Conv2D(32,(3,3), activation='relu', input_shape=(28,28,1)))
-model_two.add(MaxPooling2D(2,2))
-model_two.add(Conv2D(64,(3,3), activation='relu'))
-model_two.add(MaxPooling2D(2,2))
-model_two.add(Conv2D(64,(3,3), activation='relu'))
-model_two.add(Flatten())
-model_two.add(Dense(64,activation='relu'))
+model.save_weights('model_four_reset.hdf5')
+model.save_weights('model_two_reset.hdf5')
+
+model_four = model_from_json(model_architect)
+model_two = model_from_json(model_architect)
+
+model_four.add(Dense(4,activation='softmax'))
 model_two.add(Dense(1,activation='sigmoid'))
 
+model_four.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
 model_two.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
 
 ##########
@@ -166,6 +164,9 @@ print('Test loss: Four {}, Two {}'.format(score_L[0],score_L_two[0]))
 print('Test accuracy: Four {}, Two {}'.format(score_L[1],score_L_two[1]))
 
 
+model_four.load_weights('model_four.hdf5')
+model_two.load_weights('model_two.hdf5')
+
 model_four.fit(x_train_M, y_train_M, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
 score_M = model_four.evaluate(x_test_four,y_test_four)
 
@@ -176,6 +177,9 @@ print('Test loss: Four {}, Two {}'.format(score_M[0],score_M_two[0]))
 print('Test accuracy: Four {}, Two {}'.format(score_M[1],score_M_two[1]))
 
 
+model_four.load_weights('model_four.hdf5')
+model_two.load_weights('model_two.hdf5')
+
 model_four.fit(x_train_S, y_train_S, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
 score_S = model_four.evaluate(x_test_four,y_test_four)
 
@@ -185,6 +189,9 @@ print('i=400')
 print('Test loss: Four {}, Two {}'.format(score_S[0],score_S_two[0]))
 print('Test accuracy: Four {}, Two {}'.format(score_S[1],score_S_two[1]))
 
+
+model_four.load_weights('model_four.hdf5')
+model_two.load_weights('model_two.hdf5')
 
 model_four.fit(x_train_SS, y_train_SS, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
 score_SS = model_four.evaluate(x_test_four,y_test_four)

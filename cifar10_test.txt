@@ -1,0 +1,109 @@
+i=60000
+
+Test loss: Six 0.14685764948433885, Two 0.003690877150981123
+
+Test accuracy: Six 0.9631666666666666, Two 0.9996666666666667
+
+
+
+i=6000
+
+Test loss: Six 0.19025669946769874, Two 0.003965352161605551
+
+Test accuracy: Six 0.946, Two 0.9986666666666667
+
+
+i=600
+
+Test loss: Six 0.3364529432058334, Two 0.014314517597804903
+
+Test accuracy: Six 0.8896666666666667, Two 0.9965
+
+
+i=60
+
+Test loss: Six 0.7034885891278585, Two 0.035378120684556355
+
+Test accuracy: Six 0.8123333333333334, Two 0.9931666666666666
+
+
+ïû:åCÅÅ2:2
+i=40000
+
+Test loss: Four 0.08684670356009155, Two 0.0043188260247694074
+
+Test accuracy: Four 0.9705, Two 0.9995
+
+
+i=4000
+
+Test loss: Four 0.10611683077551425, Two 0.005179809077216532
+
+Test accuracy: Four 0.96525, Two 0.99925
+
+
+i=400
+
+Test loss: Four 0.2725234687924385, Two 0.02512948524957659
+
+Test accuracy: Four 0.92675, Two 0.995
+
+
+
+i=40
+
+Test loss: Four 0.34990739181637764, Two 0.014636258142476264
+
+Test accuracy: Four 0.903, Two 0.997
+
+
+ïû:åCÅÅ3:1
+i=40000
+
+Test loss: Four 0.13613009795825928, Two 0.004205805193403194
+
+Test accuracy: Four 0.9665, Two 0.99975
+
+i=4000
+
+Test loss: Four 0.14308711121976375, Two 0.004386358838860986
+
+Test accuracy: Four 0.95375, Two 0.9995
+
+i=400
+
+Test loss: Four 0.24685329653322696, Two 0.007357847864826909
+
+Test accuracy: Four 0.92925, Two 0.9985
+
+i=40
+
+Test loss: Four 0.44573107431828973, Two 0.00909063832249376
+
+Test accuracy: Four 0.8935, Two 0.99775
+
+
+ïû:åCÅÅ1:3
+i=40000
+
+Test loss: Four 0.08160949592594989, Two 0.004744752372449853
+
+Test accuracy: Four 0.9735, Two 0.9995
+
+i=4000
+
+Test loss: Four 0.1396952275519725, Two 0.010341392159141151
+
+Test accuracy: Four 0.962, Two 0.99825
+
+i=400
+
+Test loss: Four 0.2623568587899208, Two 0.027926215799208988
+
+Test accuracy: Four 0.899, Two 0.99525
+
+i=40
+
+Test loss: Four 0.6761409721076489, Two 0.037378648803981375
+
+Test accuracy: Four 0.87625, Two 0.99475

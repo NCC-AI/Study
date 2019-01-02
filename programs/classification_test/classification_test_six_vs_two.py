@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from keras.datasets import fashion_mnist
 from keras.utils import to_categorical
-from keras.models import Sequential
+from keras.models import Sequential, model_from_json
 from keras.layers import Dense, Conv2D, MaxPooling2D,Flatten
 from keras.callbacks import EarlyStopping
 import os
@@ -101,30 +101,26 @@ y_train_SS_two = y_train_six_to_two[:60]
 ##############
 # make model #
 ##############
-model_six = Sequential()
-model_six.add(Conv2D(32,(3,3), activation='relu', input_shape=(28,28,1)))
-model_six.add(MaxPooling2D(2,2))
-model_six.add(Conv2D(64,(3,3), activation='relu'))
-model_six.add(MaxPooling2D(2,2))
-model_six.add(Conv2D(64,(3,3), activation='relu'))
-model_six.add(Flatten())
-model_six.add(Dense(64,activation='relu'))
-model_six.add(Dense(6,activation='softmax'))
-
+model = Sequential()
+model.add(Conv2D(32,(3,3), activation='relu', input_shape=(28,28,1)))
+model.add(MaxPooling2D(2,2))
+model.add(Conv2D(64,(3,3), activation='relu'))
+model.add(MaxPooling2D(2,2))
+model.add(Conv2D(64,(3,3), activation='relu'))
+model.add(Flatten())
+model.add(Dense(64,activation='relu'))
+model_architect = model.to_json()
 early_stopping = EarlyStopping(patience=10, verbose=-1)
 
-model_six.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['acc'])
+model_six = model_from_json(model_architect)
+model_six.add(Dense(6,activation='softmax'))
 
-model_two = Sequential()
-model_two.add(Conv2D(32,(3,3), activation='relu', input_shape=(28,28,1)))
-model_two.add(MaxPooling2D(2,2))
-model_two.add(Conv2D(64,(3,3), activation='relu'))
-model_two.add(MaxPooling2D(2,2))
-model_two.add(Conv2D(64,(3,3), activation='relu'))
-model_two.add(Flatten())
-model_two.add(Dense(64,activation='relu'))
+model_two = model_from_json(model_architect)
 model_two.add(Dense(1,activation='sigmoid'))
 
+model_six.save_weights('model_six_reset.hdf5')
+model_two.save_weights('model_two_reset.hdf5')
+model_six.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['acc'])
 model_two.compile(loss='binary_crossentropy',optimizer='adam',metrics=['acc'])
 
 ##########
@@ -140,6 +136,9 @@ print('Test loss: Six {}, Two {}'.format(score_L[0],score_L_two[0]))
 print('Test accuracy: Six {}, Two {}'.format(score_L[1],score_L_two[1]))
 
 
+model_six.load_weights('model_six.hdf5')
+model_two.load_weights('model_two.hdf5')
+
 model_six.fit(x_train_M, y_train_M, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
 score_M = model_six.evaluate(x_test_six,y_test_six)
 
@@ -150,6 +149,9 @@ print('Test loss: Six {}, Two {}'.format(score_M[0],score_M_two[0]))
 print('Test accuracy: Six {}, Two {}'.format(score_M[1],score_M_two[1]))
 
 
+model_six.load_weights('model_six.hdf5')
+model_two.load_weights('model_two.hdf5')
+
 model_six.fit(x_train_S, y_train_S, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
 score_S = model_six.evaluate(x_test_six,y_test_six)
 
@@ -159,6 +161,9 @@ print('i=600')
 print('Test loss: Six {}, Two {}'.format(score_S[0],score_S_two[0]))
 print('Test accuracy: Six {}, Two {}'.format(score_S[1],score_S_two[1]))
 
+
+model_six.load_weights('model_six.hdf5')
+model_two.load_weights('model_two.hdf5')
 
 model_six.fit(x_train_SS, y_train_SS, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
 score_SS = model_six.evaluate(x_test_six,y_test_six)
