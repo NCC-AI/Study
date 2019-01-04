@@ -11,6 +11,8 @@ https://arxiv.org/pdf/1503.08909v2.pdf
 
 ## どうやって有効だと検証した?
 動画データセット(UCF-101 datasets)
+![result1](https://github.com/NCC-AI/Study/blob/images/video_classification/result1.png)
+![result2](https://github.com/NCC-AI/Study/blob/images/video_classification/result2.png)
 
 ## 技術の手法や肝は？
 Convlution + LSTM　と、 Convlution + 時系列に展開してPoolingの比較
