@@ -1,4 +1,4 @@
-# タイトルをここに書く
+# Beyond Short Snippets: Deep Networks for Video Classification
 (2015) Joe Yue-Hei Ng/Matthew Hausknecht/Sudheendra Vijayanarasimhan/Oriol Vinyals/Rajat Monga/George Toderici
 https://arxiv.org/pdf/1503.08909v2.pdf
 
