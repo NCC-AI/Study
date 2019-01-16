@@ -135,69 +135,89 @@ model.add(MaxPooling2D(2,2))
 model.add(Conv2D(64,(3,3), activation='relu'))
 model.add(Flatten())
 model.add(Dense(64,activation='relu'))
+model_architect = model.to_json()
 early_stopping = EarlyStopping(patience=10, verbose=-1)
 
-model_architect = model.to_json()
-
-model.save_weights('model_four_reset.hdf5')
-model.save_weights('model_two_reset.hdf5')
-
 model_four = model_from_json(model_architect)
-model_two = model_from_json(model_architect)
-
 model_four.add(Dense(4,activation='softmax'))
+
+model_two = model_from_json(model_architect)
 model_two.add(Dense(1,activation='sigmoid'))
 
-model_four.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
-model_two.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
+model_four.save_weights('model_four_default.hdf5')
+model_two.save_weights('model_two_default.hdf5')
+model_four.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['acc'])
+model_two.compile(loss='binary_crossentropy',optimizer='adam',metrics=['acc'])
 
 ##########
 # result #
 ##########
+
+# train data = L size #
 model_four.fit(x_train_L, y_train_L, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
-score_L = model_four.evaluate(x_test_four,y_test_four)
+pred_y_four = model_four.predict_classes(x_test_four)
+pred_y_four_to_two = np.array([0 if i <2 else 1 for i in pred_y_four])
+match_count = 0
+for i, _ in enumerate(pred_y_four_to_two):
+    if pred_y_four_to_two[i] == y_test_four_to_two[i]:
+        match_count += 1
+L_four_acc = match_count/len(pred_y_four)
 
 model_two.fit(x_train_L, y_train_L_two, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
 score_L_two = model_two.evaluate(x_test_four,y_test_four_to_two)
 print('i=40000')
-print('Test loss: Four {}, Two {}'.format(score_L[0],score_L_two[0]))
-print('Test accuracy: Four {}, Two {}'.format(score_L[1],score_L_two[1]))
+print('Test accuracy: Four {}, Two {}'.format(L_four_acc,score_L_two[1]))
 
-
-model_four.load_weights('model_four.hdf5')
-model_two.load_weights('model_two.hdf5')
+# train data = M size #
+model_four.load_weights('model_four_default.hdf5')
+model_two.load_weights('model_two_default.hdf5')
 
 model_four.fit(x_train_M, y_train_M, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
-score_M = model_four.evaluate(x_test_four,y_test_four)
+pred_y_four = model_four.predict_classes(x_test_four)
+pred_y_four_to_two = np.array([0 if i <2 else 1 for i in pred_y_four])
+match_count = 0
+for i, _ in enumerate(pred_y_four_to_two):
+    if pred_y_four_to_two[i] == y_test_four_to_two[i]:
+        match_count += 1
+M_four_acc = match_count/len(pred_y_four)
 
 model_two.fit(x_train_M, y_train_M_two, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
 score_M_two = model_two.evaluate(x_test_four,y_test_four_to_two)
 print('i=4000')
-print('Test loss: Four {}, Two {}'.format(score_M[0],score_M_two[0]))
-print('Test accuracy: Four {}, Two {}'.format(score_M[1],score_M_two[1]))
+print('Test accuracy: Four {}, Two {}'.format(M_four_acc,score_M_two[1]))
 
-
-model_four.load_weights('model_four.hdf5')
-model_two.load_weights('model_two.hdf5')
+# train data = S size #
+model_four.load_weights('model_four_default.hdf5')
+model_two.load_weights('model_two_default.hdf5')
 
 model_four.fit(x_train_S, y_train_S, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
-score_S = model_four.evaluate(x_test_four,y_test_four)
+pred_y_four = model_four.predict_classes(x_test_four)
+pred_y_four_to_two = np.array([0 if i <2 else 1 for i in pred_y_four])
+match_count = 0
+for i, _ in enumerate(pred_y_four_to_two):
+    if pred_y_four_to_two[i] == y_test_four_to_two[i]:
+        match_count += 1
+S_four_acc = match_count/len(pred_y_four)
 
 model_two.fit(x_train_S, y_train_S_two, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
 score_S_two = model_two.evaluate(x_test_four,y_test_four_to_two)
 print('i=400')
-print('Test loss: Four {}, Two {}'.format(score_S[0],score_S_two[0]))
-print('Test accuracy: Four {}, Two {}'.format(score_S[1],score_S_two[1]))
+print('Test accuracy: Four {}, Two {}'.format(S_four_acc,score_S_two[1]))
 
-
-model_four.load_weights('model_four.hdf5')
-model_two.load_weights('model_two.hdf5')
+# train data = SS size #
+model_four.load_weights('model_four_default.hdf5')
+model_two.load_weights('model_two_default.hdf5')
 
 model_four.fit(x_train_SS, y_train_SS, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
-score_SS = model_four.evaluate(x_test_four,y_test_four)
+pred_y_four = model_four.predict_classes(x_test_four)
+pred_y_four_to_two = np.array([0 if i <2 else 1 for i in pred_y_four])
+match_count = 0
+for i, _ in enumerate(pred_y_four_to_two):
+    if pred_y_four_to_two[i] == y_test_four_to_two[i]:
+        match_count += 1
+SS_four_acc = match_count/len(pred_y_four)
 
 model_two.fit(x_train_SS, y_train_SS_two, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
 score_SS_two = model_two.evaluate(x_test_four,y_test_four_to_two)
 print('i=40')
-print('Test loss: Four {}, Two {}'.format(score_SS[0],score_SS_two[0]))
-print('Test accuracy: Four {}, Two {}'.format(score_SS[1],score_SS_two[1]))
+print('Test accuracy: Four {}, Two {}'.format(SS_four_acc,score_SS_two[1]))

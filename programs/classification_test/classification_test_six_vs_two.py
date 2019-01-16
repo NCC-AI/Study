@@ -118,58 +118,81 @@ model_six.add(Dense(6,activation='softmax'))
 model_two = model_from_json(model_architect)
 model_two.add(Dense(1,activation='sigmoid'))
 
-model_six.save_weights('model_six_reset.hdf5')
-model_two.save_weights('model_two_reset.hdf5')
+model_six.save_weights('model_six_default.hdf5')
+model_two.save_weights('model_two_default.hdf5')
 model_six.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['acc'])
 model_two.compile(loss='binary_crossentropy',optimizer='adam',metrics=['acc'])
 
 ##########
 # result #
 ##########
+
+# train data = L size #
 model_six.fit(x_train_L, y_train_L, batch_size=256, epochs=50, verbose=2, validation_split=0.2, callbacks=[early_stopping])
-score_L = model_six.evaluate(x_test_six,y_test_six)
+pred_y_six = model_six.predict_classes(x_test_six)
+
+pred_y_six_to_two = np.array([0 if i <3 else 1 for i in pred_y_six])
+match_count = 0
+for i, _ in enumerate(pred_y_six_to_two):
+    if pred_y_six_to_two[i] == y_test_six_to_two[i]:
+        match_count += 1
+L_six_acc = match_count/len(pred_y_six)
 
 model_two.fit(x_train_L, y_train_L_two, batch_size=256, epochs=50, verbose=2, validation_split=0.2, callbacks=[early_stopping])
 score_L_two = model_two.evaluate(x_test_six,y_test_six_to_two)
 print('i=60000')
-print('Test loss: Six {}, Two {}'.format(score_L[0],score_L_two[0]))
-print('Test accuracy: Six {}, Two {}'.format(score_L[1],score_L_two[1]))
+print('Test accuracy: Six {}, Two {}'.format(L_six_acc,score_L_two[1]))
 
-
-model_six.load_weights('model_six.hdf5')
-model_two.load_weights('model_two.hdf5')
+# train data = M size #
+model_six.load_weights('model_six_default.hdf5')
+model_two.load_weights('model_two_default.hdf5')
 
 model_six.fit(x_train_M, y_train_M, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
-score_M = model_six.evaluate(x_test_six,y_test_six)
+pred_y_six = model_six.predict_classes(x_test_six)
+pred_y_six_to_two = np.array([0 if i <3 else 1 for i in pred_y_six])
+match_count = 0
+for i, _ in enumerate(pred_y_six_to_two):
+    if pred_y_six_to_two[i] == y_test_six_to_two[i]:
+        match_count += 1
+M_six_acc = match_count/len(pred_y_six)
 
 model_two.fit(x_train_M, y_train_M_two, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
 score_M_two = model_two.evaluate(x_test_six,y_test_six_to_two)
 print('i=6000')
-print('Test loss: Six {}, Two {}'.format(score_M[0],score_M_two[0]))
-print('Test accuracy: Six {}, Two {}'.format(score_M[1],score_M_two[1]))
+print('Test accuracy: Six {}, Two {}'.format(M_six_acc,score_M_two[1]))
 
-
-model_six.load_weights('model_six.hdf5')
-model_two.load_weights('model_two.hdf5')
+# train data = S size #
+model_six.load_weights('model_six_default.hdf5')
+model_two.load_weights('model_two_default.hdf5')
 
 model_six.fit(x_train_S, y_train_S, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
-score_S = model_six.evaluate(x_test_six,y_test_six)
+pred_y_six = model_six.predict_classes(x_test_six)
+pred_y_six_to_two = np.array([0 if i <3 else 1 for i in pred_y_six])
+match_count = 0
+for i, _ in enumerate(pred_y_six_to_two):
+    if pred_y_six_to_two[i] == y_test_six_to_two[i]:
+        match_count += 1
+S_six_acc = match_count/len(pred_y_six)
 
 model_two.fit(x_train_S, y_train_S_two, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
 score_S_two = model_two.evaluate(x_test_six,y_test_six_to_two)
 print('i=600')
-print('Test loss: Six {}, Two {}'.format(score_S[0],score_S_two[0]))
-print('Test accuracy: Six {}, Two {}'.format(score_S[1],score_S_two[1]))
+print('Test accuracy: Six {}, Two {}'.format(S_six_acc,score_S_two[1]))
 
-
-model_six.load_weights('model_six.hdf5')
-model_two.load_weights('model_two.hdf5')
+# train data = SS size #
+model_six.load_weights('model_six_default.hdf5')
+model_two.load_weights('model_two_default.hdf5')
 
 model_six.fit(x_train_SS, y_train_SS, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
-score_SS = model_six.evaluate(x_test_six,y_test_six)
+pred_y_six = model_six.predict_classes(x_test_six)
+pred_y_six_to_two = np.array([0 if i <3 else 1 for i in pred_y_six])
+match_count = 0
+for i, _ in enumerate(pred_y_six_to_two):
+    if pred_y_six_to_two[i] == y_test_six_to_two[i]:
+        match_count += 1
+SS_six_acc = match_count/len(pred_y_six)
 
 model_two.fit(x_train_SS, y_train_SS_two, batch_size=256, epochs=50, verbose=0, validation_split=0.2, callbacks=[early_stopping])
 score_SS_two = model_two.evaluate(x_test_six,y_test_six_to_two)
 print('i=60')
-print('Test loss: Six {}, Two {}'.format(score_SS[0],score_SS_two[0]))
-print('Test accuracy: Six {}, Two {}'.format(score_SS[1],score_SS_two[1]))
+print('Test accuracy: Six {}, Two {}'.format(SS_six_acc,score_SS_two[1]))
